@@ -1,2 +1,2 @@
 /bin/bash
-rm C | rm c
+rm *[C]* | rm *[c]*
