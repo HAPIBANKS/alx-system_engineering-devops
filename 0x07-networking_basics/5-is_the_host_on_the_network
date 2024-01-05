@@ -7,4 +7,4 @@ then
 fi
 
 ip_address=$1
-ping -c 5 $ip_address
+ping -c 5 "$ip_address"
