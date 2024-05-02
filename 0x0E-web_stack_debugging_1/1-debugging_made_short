@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#fix short and sweet
+# fix short and sweet
 cat /etc/nginx/sites-available/default > /etc/nginx/sites-enabled/default
 service nginx restart
 rm /run/nginx.pid
