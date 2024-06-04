@@ -2,7 +2,7 @@
 
 """
 a function that queries the Reddit API and prints
-the titles of the first 10 hot posts listed
+the titles of the first 10 hot posts listed.
 """
 import requests
 from sys import argv
