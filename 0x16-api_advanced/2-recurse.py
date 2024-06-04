@@ -9,7 +9,6 @@ import requests
 def recurse(subreddit, hot_list=[], after="", count=0):
     """returns a list containing the titles of all the titles
     of all hot articles"""
-
     url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
     headers = {
         "User-Agent": "0x16-api_advanced:project:\
@@ -28,8 +27,8 @@ v1.0.0 (by /u/firdaus_cartoon_jr)"
     results = response.json().get("data")
     after = results.get("after")
     count += results.get("dist")
-    for c in results.get("children"):
-        hot_list.append(c.get("data").get("title"))
+    for i in results.get("children"):
+        hot_list.append(i.get("data").get("title"))
 
     if after is not None:
         return recurse(subreddit, hot_list, after, count)
