@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# check if the parameters are less than 4
+if [ "$#" -lt 4 ]; then
+    echo "Usage: 0-transfer_file PATH_TO_FILE IF USERNAME PATH_TO_SSH_KEY"
+    exit i
+fi
+FILE_TO_TRANSFER="$1"
+SERVEER_IP="$2"
+USERNAME="$3"
+SSH_KEY="$4"
+
+#Transfer the file using secure copy
+scp -i "$SSH_KEY" -o STrictHostKeyChecking=no "$FILE_TO_TRANSFER" "$USERNAME@$SERVER_IP:~/"
+#check if the scp command is successful
+if [ $? -eq 0]; then
+    echo "FIle transfer successful."
+else
+    echo "FIle transfer failed."
+fi
