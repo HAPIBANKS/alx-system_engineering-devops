@@ -10,21 +10,17 @@ import requests
 
 def number_of_subscribers(subreddit):
     """base url"""
-    url = f'https://www.reddit.com/r/{subreddit}/about.json'
-    headers = {'user-Agent': 'MyRedditApp/0.1'}
+    resp = get('https://www.reddit.com/r/{}/about.json'.format(subreddit),
+               params={"raw_json": 1},
+               headers={"User-Agent": "Andrew from Alx"},
+               allow_redirects=False)
 
     try:
-        response = requests.get(url, headers=headers)
         response.raise_for_status()
-
-        data = response.json()
-
-        return data['data']['subscribers']
-    exceptrequests.exception.HTTPError as http_err:
-        if response.status_code == 404:
-            print(f"HTTP error occured: {http_err}")
-        else:
-            print(f"HTTP error occured: {http_err}")
-    excep requests.exceptions.RequestException as err:
-        print(f"An error occurred: {err}")
-    return 0
+    except:
+        return 0
+    else:
+        number_of_sub = response.json().get('data').get('subscribers')
+        if number_of_sub is None:
+            return 0
+        return nuber_of_sub
