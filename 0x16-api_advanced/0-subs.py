@@ -9,17 +9,17 @@ import requests
 
 
 def number_of_subscribers(subreddit):
-    """base url"""
-    try:
-        response = requests.get(
-            'https://www.reddit.com/r/{}/about.json'.format(subreddit),
+    """Use GET request to find number of subscribers to `subreddit`"""
+    r = get("https://www.reddit.com/r/{}/about.json".format(subreddit),
             params={"raw_json": 1},
-            headers={"User-Agent": "Posiayo from Alx"},
+            headers={"User-Agent": "Andrew from Holberton"},
             allow_redirects=False)
-        response.raise_for_status()
-        number_of_sub = response.json().get('data', {}).get('subscribers')
-        if number_of_sub is None:
-            return 0
-        return nuber_of_sub
-    except requests.exceptions.RequestException:
+    try:
+        r.raise_for_status()
+    except:
         return 0
+    else:
+        num_subscribers = r.json().get('data').get('subscribers')
+        if num_subscribers is None:
+            return 0
+        return num_subscribers
